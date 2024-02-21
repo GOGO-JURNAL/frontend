@@ -1,5 +1,5 @@
-import logo from './../../../public/logo.png';
-import logoBrand from './../../../public/logo-brand.png';
+import logo from '/public/logo.png';
+import logoBrand from '/public/logo-brand.png';
 
 const Logo = () => {
     return (
