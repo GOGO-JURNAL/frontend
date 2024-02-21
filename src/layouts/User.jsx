@@ -1,14 +1,14 @@
-import { Outlet } from "react-router-dom"
-import { Fragment } from "react"
+import { Outlet } from 'react-router-dom';
+import Navbar from '../components/Navbar/Index';
 
 const User = () => {
     return (
-        <Fragment>
-            <div>User</div>
-    
-            <Outlet />
-        </Fragment>
-    )
-}
+        <div className="bg-blue-50 h-">
+            <Navbar />
 
-export default User
+            <Outlet />
+        </div>
+    );
+};
+
+export default User;

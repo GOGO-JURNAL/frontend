@@ -1,5 +1,5 @@
-import { Fragment } from "react"
-import { Outlet } from "react-router-dom"
+import { Fragment } from 'react';
+import { Outlet } from 'react-router-dom';
 
 const Admin = () => {
     return (
@@ -8,7 +8,7 @@ const Admin = () => {
 
             <Outlet />
         </Fragment>
-    )
-}
+    );
+};
 
-export default Admin
+export default Admin;
