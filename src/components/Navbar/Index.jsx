@@ -17,7 +17,7 @@ const Navbar = () => {
                 className={({ open }) =>
                     classNames(
                         open ? 'fixed inset-0 z-40 overflow-y-auto' : '',
-                        'bg-white shadow-sm lg:static lg:overflow-y-visible'
+                        'bg-white shadow rounded-b-xl lg:static lg:overflow-y-visible'
                     )
                 }
             >
