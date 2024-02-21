@@ -2,7 +2,8 @@ import { Popover } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Logo from './Logo';
 import SearchBar from './SearchBar';
-import PopoverMenu from '../PopoverMenu';
+import PopoverMenu from './PopoverMenu';
+import Menu from './Menu';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
@@ -27,6 +28,8 @@ const Navbar = () => {
                                 <Logo />
 
                                 <SearchBar />
+
+                                <Menu />
 
                                 <div className="flex items-center md:absolute md:inset-y-0 md:right-0 md:hidden">
                                     {/* Mobile menu button */}
