@@ -8,7 +8,7 @@ const User = () => {
             style={{ maxWidth: '1480px' }}>
             <Navbar />
 
-            <main className="container bg-white rounded-5 overflow-hidden mt-3 p-0">
+            <main className="container bg-white rounded-5 overflow-hidden mt-3 p-0 pb-5 shadow mb-5">
                 <Outlet />
             </main>
         </div>

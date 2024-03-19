@@ -15,7 +15,7 @@ const InformationMenu = (props) => {
 }
 
 InformationMenu.propTypes = {
-    icon: PropTypes.string,
+    icon: PropTypes.object,
     text: PropTypes.string,
     value: PropTypes.number,
 }

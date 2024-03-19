@@ -16,3 +16,21 @@
 .text-blue {
     color: #0a2647;
 }
+
+.bg-blue {
+    background-color: #0263ff;
+}
+.bg-published {
+    background-color: #2194ba;
+}
+.bg-notpublished {
+    background-color: #eef5ff;
+}
+.bg-orange {
+    background-color: #ff612f;
+}
+
+.legend {
+    width: 10%;
+    height: 2vh;
+}
