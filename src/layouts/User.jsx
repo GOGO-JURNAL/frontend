@@ -1,9 +1,14 @@
+import { Outlet } from 'react-router'
 import Navbar from '../components/Navbar/Index'
 
 const User = () => {
     return (
-        <div className="max-w-screen-2xl bg-blue-50 min-h-screen">
+        <div className="mx-auto w-100 bg-light" style={{ maxWidth: '1480px' }}>
             <Navbar />
+
+            <main className="">
+                <Outlet />
+            </main>
         </div>
     )
 }
