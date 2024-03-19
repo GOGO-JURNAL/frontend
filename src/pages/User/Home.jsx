@@ -1,9 +1,14 @@
+import Header from '../../components/Header/Index'
+import Information from '../../components/Information/Index'
+
 const Home = () => {
     return (
-        <main className="">
-            <div>Home User</div>
-        </main>
-    );
-};
+        <>
+            <Header />
 
-export default Home;
+            <Information />
+        </>
+    )
+}
+
+export default Home
