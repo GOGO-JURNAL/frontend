@@ -1,23 +1,42 @@
 import { Chart } from 'chart.js/auto'
 import { ArcElement, Tooltip } from 'chart.js'
 import { Pie } from 'react-chartjs-2'
-import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { getLecturers } from '../../../services/journal'
 
 Chart.register(ArcElement, Tooltip)
-const data = [
-    {
-        published: false,
-        value: 15,
-    },
-    {
-        published: true,
-        value: 85,
-    },
-]
 
 const PieChart = () => {
-    const [chartData] = useState({
+    const [lecturers, setLecturers] = useState(null)
+
+    useEffect(() => {
+        getLecturers().then((data) => setLecturers(data))
+    }, [])
+
+    if (!lecturers) {
+        return <div>Loading...</div>
+    }
+
+    let data = [
+        {
+            published: true,
+            value: Number(0),
+        },
+        {
+            published: false,
+            value: Number(0),
+        },
+    ]
+
+    lecturers.forEach((lecturer) => {
+        if (lecturer.Jurnal.length > 0) {
+            data[0].value += 1
+        } else {
+            data[1].value += 1
+        }
+    })
+
+    const chartData = {
         labels: data.map((data) => data.year),
         datasets: [
             {
@@ -28,7 +47,7 @@ const PieChart = () => {
                 ),
             },
         ],
-    })
+    }
     const option = {
         responsive: true,
         plugins: {
@@ -49,7 +68,7 @@ const PieChart = () => {
                             label += 'Not Published: '
                         }
                         if (context.parsed !== null) {
-                            label += context.parsed + '%' // Menambahkan karakter "%" pada nilai data
+                            label += context.parsed
                         }
                         return label
                     },
@@ -59,10 +78,6 @@ const PieChart = () => {
     }
 
     return <Pie data={chartData} options={option} />
-}
-
-PieChart.propTypes = {
-    chartData: PropTypes.object,
 }
 
 export default PieChart

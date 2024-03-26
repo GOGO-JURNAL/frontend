@@ -1,40 +1,40 @@
 import { Chart } from 'chart.js/auto'
 import { CategoryScale, Legend } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
-import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { getJournal } from '../../../services/journal'
 
 Chart.register(CategoryScale, Legend)
 
-const data = [
-    {
-        article: 'Scopus',
-        value: 20,
-    },
-    {
-        article: 'Researches',
-        value: 60,
-    },
-    {
-        article: 'Comunitys',
-        value: 50,
-    },
-]
-const target = 33
+const BarChart = ({ target }) => {
+    const [journal, setJournal] = useState(null)
 
-const BarChart = () => {
-    const [chartData] = useState({
-        labels: data.map((data) => data.article),
+    useEffect(() => {
+        getJournal().then((data) => setJournal(data))
+    }, [])
+
+    if (!journal) {
+        return <div>Loading...</div>
+    }
+
+    const scopus = parseInt(journal.scopus)
+    const research = parseInt(journal.penelitian)
+    const community = parseInt(journal.pengabdian)
+    const data = [scopus, research, community]
+
+    const chartData = {
+        labels: ['Scopus', 'Researches', 'Community Services'],
         datasets: [
             {
                 label: 'Total Articles',
-                data: data.map((data) => data.value),
-                backgroundColor: data.map((data) =>
-                    data.value > target ? '#2194ba' : '#FF612F',
+                data: data,
+                backgroundColor: data.map((value) =>
+                    value > target ? '#2194ba' : '#FF612F',
                 ),
             },
         ],
-    })
+    }
+
     const option = {
         responsive: true,
         plugins: {
@@ -68,7 +68,7 @@ const BarChart = () => {
 }
 
 BarChart.propTypes = {
-    chartData: PropTypes.object,
+    target: Number,
 }
 
 export default BarChart
