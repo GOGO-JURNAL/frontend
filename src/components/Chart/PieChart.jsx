@@ -3,11 +3,50 @@ import { ArcElement, Tooltip } from 'chart.js'
 import { Pie } from 'react-chartjs-2'
 import { useState, useEffect } from 'react'
 import { getLecturers } from '../../../services/journal'
+import PropTypes from 'prop-types'
 
 Chart.register(ArcElement, Tooltip)
 
-const PieChart = () => {
+function processingData(lecturers, value) {
+    let data = [
+        {
+            published: true,
+            value: new Set(),
+            percentage: function () {
+                return ((this.value.length / lecturers.length) * 100).toFixed(2)
+            },
+        },
+        {
+            published: false,
+            value: new Set(),
+            percentage: function () {
+                return ((this.value.length / lecturers.length) * 100).toFixed(2)
+            },
+        },
+    ]
+
+    lecturers.forEach((lecturer) => {
+        if (lecturer.Jurnal.length > 0) {
+            if (
+                lecturer.Jurnal.filter((jurnal) => jurnal.category === value)
+                    .length > 0
+            ) {
+                data[0].value.add(lecturer.id)
+            } else {
+                data[1].value.add(lecturer.id)
+            }
+        } else {
+            data[1].value.add(lecturer.id)
+        }
+    })
+
+    data.forEach((item) => (item.value = [...item.value]))
+
+    return data
+}
+const PieChart = (props) => {
     const [lecturers, setLecturers] = useState(null)
+    const { value } = props
 
     useEffect(() => {
         getLecturers().then((data) => setLecturers(data))
@@ -17,31 +56,15 @@ const PieChart = () => {
         return <div>Loading...</div>
     }
 
-    let data = [
-        {
-            published: true,
-            value: Number(0),
-        },
-        {
-            published: false,
-            value: Number(0),
-        },
-    ]
-
-    lecturers.forEach((lecturer) => {
-        if (lecturer.Jurnal.length > 0) {
-            data[0].value += 1
-        } else {
-            data[1].value += 1
-        }
-    })
+    const data = processingData(lecturers, value)
+    console.log(data[1].percentage())
 
     const chartData = {
         labels: data.map((data) => data.year),
         datasets: [
             {
                 label: '',
-                data: data.map((data) => data.value),
+                data: data.map((data) => data.percentage()),
                 backgroundColor: data.map((data) =>
                     data.published === true ? '#2194BA' : '#EEF5FF',
                 ),
@@ -70,7 +93,7 @@ const PieChart = () => {
                         if (context.parsed !== null) {
                             label += context.parsed
                         }
-                        return label
+                        return label + ' %'
                     },
                 },
             },
@@ -78,6 +101,10 @@ const PieChart = () => {
     }
 
     return <Pie data={chartData} options={option} />
+}
+
+PieChart.propTypes = {
+    value: PropTypes.string,
 }
 
 export default PieChart

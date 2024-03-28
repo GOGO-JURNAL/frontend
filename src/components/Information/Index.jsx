@@ -27,12 +27,12 @@ const Information = () => {
             style={{ bottom: '2rem' }}>
             <InformationMenu
                 icon={<PeopleFill className={iconStyle} />}
-                text="Lecturers"
+                text={'Lecturers'}
                 value={lecturers}
             />
             <InformationMenu
                 icon={<FileEarmarkTextFill className={iconStyle} />}
-                text="Articles"
+                text={'Articles'}
                 value={total}
             />
         </section>

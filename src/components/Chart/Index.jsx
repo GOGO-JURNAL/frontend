@@ -6,6 +6,7 @@ import { getJournal, getLecturers } from '../../../services/journal'
 const Charts = () => {
     const [target, setTarget] = useState(0)
     const [articles, setArticles] = useState(0)
+    const [filter, setFilter] = useState('RISET')
 
     useEffect(() => {
         getLecturers().then((data) => setTarget(data.length))
@@ -22,10 +23,11 @@ const Charts = () => {
     return (
         <div className="w-100 px-5 d-flex gap-5">
             <div className="w-50">
-                <h1 className="fw-bold fs-3 mb-3">
-                    Articles Published <small className="fs-6">2022-2024</small>
-                </h1>
-                <div style={{ maxHeight: '100vh', height: 'auto' }}>
+                <h1 className="fw-bold fs-3 mb-0">Articles Published</h1>
+                <small className="fs-6">2022-2023</small>
+                <div
+                    className="mt-4 mb-4"
+                    style={{ maxHeight: '100vh', height: 'auto' }}>
                     <BarChart target={target} />
                 </div>
                 <div className="d-flex row mt-3">
@@ -64,11 +66,23 @@ const Charts = () => {
                 </div>
             </div>
             <div className="w-50" style={{ maxHeight: '100vh' }}>
-                <h1 className="fw-bold fs-3 mb-3">Lecturers Has Published</h1>
+                <h1 className="fw-bold fs-3 mb-1">Lecturers Has Published</h1>
+                <div className="mt-2 mb-3 d-flex justify-content-center gap-2">
+                    <button
+                        className={`btn ${filter === 'RISET' ? 'btn-primary' : 'btn-outline-primary'}`}
+                        onClick={() => setFilter('RISET')}>
+                        Riset
+                    </button>
+                    <button
+                        className={`btn ${filter === 'PENGABDIAN' ? 'btn-primary' : 'btn-outline-primary'}`}
+                        onClick={() => setFilter('PENGABDIAN')}>
+                        Pengabdian
+                    </button>
+                </div>
                 <div
                     className="w-100 d-flex justify-content-center align-items-center"
                     style={{ maxHeight: '40vh' }}>
-                    <PieChart />
+                    <PieChart value={filter} />
                 </div>
                 <div className="d-flex flex-column gap-1">
                     <div className="d-flex align-items-center">
