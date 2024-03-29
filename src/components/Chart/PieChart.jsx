@@ -57,7 +57,6 @@ const PieChart = (props) => {
     }
 
     const data = processingData(lecturers, value)
-    console.log(data[1].percentage())
 
     const chartData = {
         labels: data.map((data) => data.year),
