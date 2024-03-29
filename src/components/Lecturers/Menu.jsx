@@ -27,7 +27,7 @@ const Menu = (props) => {
                 </div>
                 <div className="d-flex align-items-center">
                     <Link
-                        to={`/lecturers/${id}`}
+                        to={`/lecturer/${id}`}
                         className="btn btn-outline-primary">
                         Lihat Detail
                     </Link>

@@ -13,7 +13,6 @@ const Home = () => {
 
             <Charts />
 
-            {/* <Articles /> */}
             <Lecturers />
         </>
     )
