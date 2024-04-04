@@ -3,6 +3,7 @@ import Header from '../../components/Header/Index'
 import Information from '../../components/Information/Index'
 import { getJournal } from '../../../services/journal'
 import Articles from '../../components/Articles/Index'
+import Loading from '../../components/LoadingScreen/Index'
 
 const ArticlesPage = () => {
     const [articles, setArticles] = useState([])
@@ -12,7 +13,7 @@ const ArticlesPage = () => {
     }, [])
 
     if (!articles.Jurnal) {
-        return <div>Loading...</div>
+        return <Loading />
     }
 
     return (

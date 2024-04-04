@@ -6,6 +6,7 @@ import { getJournal } from '../../../services/journal'
 import { useEffect, useState } from 'react'
 import Articles from '../../components/Articles/Index'
 import { Link } from 'react-router-dom'
+import Loading from '../../components/LoadingScreen/Index'
 
 const HomePage = () => {
     const [articles, setArticles] = useState([])
@@ -15,7 +16,7 @@ const HomePage = () => {
     }, [])
 
     if (!articles.Jurnal) {
-        return <div>Loading...</div>
+        return <Loading />
     }
 
     return (
@@ -31,15 +32,18 @@ const HomePage = () => {
 
                 <div>
                     {articles.Jurnal.length > 0 &&
-                        articles.Jurnal.slice(0, 5).map((data, index) => (
-                            <Articles
-                                key={index}
-                                title={data.title}
-                                publication={data.publication}
-                                year={data.year}
-                                cite={data.cite}
-                            />
-                        ))}
+                        articles.Jurnal.sort((a, b) => b.cite - a.cite)
+                            .sort((a, b) => b.year - a.year)
+                            .slice(0, 5)
+                            .map((data, index) => (
+                                <Articles
+                                    key={index}
+                                    title={data.title}
+                                    publication={data.publication}
+                                    year={data.year}
+                                    cite={data.cite}
+                                />
+                            ))}
                 </div>
 
                 <div className="text-end mt-3">

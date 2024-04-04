@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getLecturers } from '../../../services/journal'
 import Menu from './Menu'
+import Loading from '../LoadingScreen/Index'
 
 const Lecturers = () => {
     const [Lecturers, setLecturers] = useState([])
@@ -14,7 +15,7 @@ const Lecturers = () => {
     }, [])
 
     if (!Lecturers) {
-        return <div>Loading...</div>
+        return <Loading />
     }
 
     return (

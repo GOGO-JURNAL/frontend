@@ -26,16 +26,24 @@ const Information = () => {
         <section
             className="w-100 d-flex justify-content-center position-relative z-5 gap-5"
             style={{ bottom: '2rem' }}>
-            <InformationMenu
-                icon={<PeopleFill className={iconStyle} />}
-                text={'Lecturers'}
-                value={lecturers}
-            />
-            <InformationMenu
-                icon={<FileEarmarkTextFill className={iconStyle} />}
-                text={'Articles'}
-                value={total}
-            />
+            <div className="container">
+                <div className="row gap-3 gap-md-0">
+                    <div className="col-md-6 d-flex justify-content-center justify-content-md-end">
+                        <InformationMenu
+                            icon={<PeopleFill className={iconStyle} />}
+                            text={'Lecturers'}
+                            value={lecturers}
+                        />
+                    </div>
+                    <div className="col-md-6 d-flex justify-content-center justify-content-md-start">
+                        <InformationMenu
+                            icon={<FileEarmarkTextFill className={iconStyle} />}
+                            text={'Articles'}
+                            value={total}
+                        />
+                    </div>
+                </div>
+            </div>
         </section>
     )
 }

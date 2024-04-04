@@ -27,6 +27,7 @@ const BarChart = (props) => {
 
     const option = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             title: {
                 display: false,
