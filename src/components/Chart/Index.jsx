@@ -16,9 +16,9 @@ const Charts = () => {
         getJournal().then((data) => setArticles(data))
     })
     const total =
-        Number(articles.scopus) +
-        Number(articles.penelitian) +
-        Number(articles.pengabdian)
+        Number(articles.SCOPUS) +
+        Number(articles.RISET) +
+        Number(articles.PENGABDIAN)
 
     return (
         <div className="w-100 px-5 d-flex gap-5">

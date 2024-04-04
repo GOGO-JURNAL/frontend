@@ -27,10 +27,7 @@ function processingData(lecturers, value) {
 
     lecturers.forEach((lecturer) => {
         if (lecturer.Jurnal.length > 0) {
-            if (
-                lecturer.Jurnal.filter((jurnal) => jurnal.category === value)
-                    .length > 0
-            ) {
+            if (lecturer.Jurnal.some((jurnal) => jurnal.category === value)) {
                 data[0].value.add(lecturer.id)
             } else {
                 data[1].value.add(lecturer.id)

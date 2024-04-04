@@ -1,35 +1,52 @@
 import { useParams } from 'react-router-dom'
-import { getLecturers } from '../../../services/journal'
+import { getDetailLecturers } from '../../../services/journal'
 import Articles from '../../components/Articles/Index'
 import Header from '../../components/Header/Index'
 import { useEffect, useState } from 'react'
 
-const LecturerDetail = () => {
+const LecturerDetailPage = () => {
     const [lecturer, setLecturer] = useState([])
     const lecturerId = useParams().id
 
     useEffect(() => {
-        getLecturers().then((data) => setLecturer(data))
-    }, [])
+        getDetailLecturers(lecturerId).then((data) => setLecturer(data))
+    }, [lecturerId])
 
-    if (!lecturer) {
+    if (!lecturer.Jurnal) {
         return <div>Loading...</div>
     }
 
     return (
         <div>
-            {lecturer
-                .filter((lecturer) => lecturer.id === lecturerId)
-                .map((item) => (
-                    <Header
-                        key={item.id}
-                        name={item.name}
-                        description={item.sinta_id}
-                    />
-                ))}
-            <Articles id={lecturerId} />
+            <Header
+                key={lecturer.id}
+                name={lecturer.name}
+                description={lecturer.sinta_id}
+            />
+
+            <main className="w-100 px-5 mt-5">
+                <h1 className="fw-bold fs-3 mb-0">Articles</h1>
+                <div>
+                    {lecturer.Jurnal ? (
+                        lecturer.Jurnal.sort((a, b) => b.cite - a.cite)
+                            .sort((a, b) => new Date(b.year) - new Date(a.year))
+                            .map((data, index) => (
+                                <Articles
+                                    key={index}
+                                    title={data.title}
+                                    author={data.dosen_id}
+                                    publication={data.publication}
+                                    year={data.year}
+                                    cite={data.cite}
+                                />
+                            ))
+                    ) : (
+                        <div>Tidak ada jurnal</div>
+                    )}
+                </div>
+            </main>
         </div>
     )
 }
 
-export default LecturerDetail
+export default LecturerDetailPage

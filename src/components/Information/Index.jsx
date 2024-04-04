@@ -14,10 +14,11 @@ const Information = () => {
     useEffect(() => {
         getJournal().then((data) => setArticles(data))
     })
+
     const total =
-        Number(articles.scopus) +
-        Number(articles.penelitian) +
-        Number(articles.pengabdian)
+        Number(articles.SCOPUS) +
+        Number(articles.RISET) +
+        Number(articles.PENGABDIAN)
 
     const iconStyle = 'visible text-blue fs-1'
 

@@ -17,9 +17,9 @@ const BarChart = ({ target }) => {
         return <div>Loading...</div>
     }
 
-    const scopus = parseInt(journal.scopus)
-    const research = parseInt(journal.penelitian)
-    const community = parseInt(journal.pengabdian)
+    const scopus = parseInt(journal.SCOPUS)
+    const research = parseInt(journal.RISET)
+    const community = parseInt(journal.PENGABDIAN)
     const data = [scopus, research, community]
 
     const chartData = {

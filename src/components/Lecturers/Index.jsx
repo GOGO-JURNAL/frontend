@@ -19,7 +19,7 @@ const Lecturers = () => {
 
     return (
         <div className="mt-5 px-5">
-            <h3 className="fw-bold">Lecturers</h3>
+            <h3 className="fw-bold">All Lecturers</h3>
 
             <div className="mt-3 d-flex flex-column gap-3">
                 {Lecturers.map((lecturer) => (
