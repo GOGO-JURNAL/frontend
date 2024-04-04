@@ -1,25 +1,15 @@
 import { Chart } from 'chart.js/auto'
 import { CategoryScale, Legend } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
-import { useEffect, useState } from 'react'
-import { getJournal } from '../../../services/journal'
 
 Chart.register(CategoryScale, Legend)
 
-const BarChart = ({ target }) => {
-    const [journal, setJournal] = useState(null)
+const BarChart = (props) => {
+    const { target = 0, datas } = props
 
-    useEffect(() => {
-        getJournal().then((data) => setJournal(data))
-    }, [])
-
-    if (!journal) {
-        return <div>Loading...</div>
-    }
-
-    const scopus = parseInt(journal.SCOPUS)
-    const research = parseInt(journal.RISET)
-    const community = parseInt(journal.PENGABDIAN)
+    const scopus = parseInt(datas.SCOPUS)
+    const research = parseInt(datas.RISET)
+    const community = parseInt(datas.PENGABDIAN)
     const data = [scopus, research, community]
 
     const chartData = {
@@ -65,10 +55,6 @@ const BarChart = ({ target }) => {
     }
 
     return <Bar data={chartData} options={option} />
-}
-
-BarChart.propTypes = {
-    target: Number,
 }
 
 export default BarChart

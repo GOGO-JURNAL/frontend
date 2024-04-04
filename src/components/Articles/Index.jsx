@@ -3,7 +3,6 @@ import {
     ChatRightTextFill,
     FileEarmarkTextFill,
 } from 'react-bootstrap-icons'
-import PropTypes from 'prop-types'
 
 const Articles = (props) => {
     const { title, publication, year, cite } = props
@@ -40,14 +39,6 @@ const Articles = (props) => {
             </div>
         </div>
     )
-}
-
-Articles.propTypes = {
-    title: PropTypes.string,
-    author: PropTypes.string,
-    publication: PropTypes.string,
-    year: PropTypes.string,
-    cite: PropTypes.number,
 }
 
 export default Articles

@@ -1,6 +1,5 @@
 import { FileEarmarkTextFill, PersonFill } from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
 
 const Menu = (props) => {
     const { id, name, idSinta, articles } = props
@@ -35,13 +34,6 @@ const Menu = (props) => {
             </div>
         </div>
     )
-}
-
-Menu.propTypes = {
-    id: PropTypes.string,
-    name: PropTypes.string,
-    idSinta: PropTypes.string,
-    articles: PropTypes.string,
 }
 
 export default Menu

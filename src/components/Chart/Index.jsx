@@ -4,17 +4,22 @@ import PieChart from './PieChart'
 import { getJournal, getLecturers } from '../../../services/journal'
 
 const Charts = () => {
-    const [target, setTarget] = useState(0)
-    const [articles, setArticles] = useState(0)
+    const [lecturers, setLecturers] = useState([])
+    const [articles, setArticles] = useState([])
     const [filter, setFilter] = useState('RISET')
 
     useEffect(() => {
-        getLecturers().then((data) => setTarget(data.length))
-    })
+        getLecturers().then((data) => setLecturers(data))
+    }, [])
 
     useEffect(() => {
         getJournal().then((data) => setArticles(data))
-    })
+    }, [])
+
+    if (!lecturers || !articles) {
+        return <div>Loading...</div>
+    }
+
     const total =
         Number(articles.SCOPUS) +
         Number(articles.RISET) +
@@ -28,7 +33,10 @@ const Charts = () => {
                 <div
                     className="mt-4 mb-4"
                     style={{ maxHeight: '100vh', height: 'auto' }}>
-                    <BarChart target={target} />
+                    <BarChart
+                        target={isNaN(lecturers.length) ? 0 : lecturers.length}
+                        datas={articles}
+                    />
                 </div>
                 <div className="d-flex row mt-3">
                     <div className="d-flex flex-column gap-1 col-6">
@@ -53,13 +61,19 @@ const Charts = () => {
                         <div className="d-flex row">
                             <p className="mb-0 col-6">Target</p>
                             <p className="mb-0 col-6">
-                                : <b>{target}</b> Articles
+                                :{' '}
+                                <span className="fw-bold">
+                                    {lecturers.length}
+                                </span>{' '}
+                                Articles
                             </p>
                         </div>
                         <div className="d-flex row">
                             <p className="mb-0 col-6">Total Articles</p>
                             <p className="mb-0 col-6">
-                                : <b>{total}</b> Articles
+                                :{' '}
+                                <span className="fw-bold">{Number(total)}</span>{' '}
+                                Articles
                             </p>
                         </div>
                     </div>
@@ -82,7 +96,7 @@ const Charts = () => {
                 <div
                     className="w-100 d-flex justify-content-center align-items-center"
                     style={{ maxHeight: '40vh' }}>
-                    <PieChart value={filter} />
+                    <PieChart value={filter} lecturers={lecturers} />
                 </div>
                 <div className="d-flex flex-column gap-1">
                     <div className="d-flex align-items-center">

@@ -1,9 +1,6 @@
 import { Chart } from 'chart.js/auto'
 import { ArcElement, Tooltip } from 'chart.js'
 import { Pie } from 'react-chartjs-2'
-import { useState, useEffect } from 'react'
-import { getLecturers } from '../../../services/journal'
-import PropTypes from 'prop-types'
 
 Chart.register(ArcElement, Tooltip)
 
@@ -42,12 +39,7 @@ function processingData(lecturers, value) {
     return data
 }
 const PieChart = (props) => {
-    const [lecturers, setLecturers] = useState(null)
-    const { value } = props
-
-    useEffect(() => {
-        getLecturers().then((data) => setLecturers(data))
-    }, [])
+    const { value, lecturers } = props
 
     if (!lecturers) {
         return <div>Loading...</div>
@@ -97,10 +89,6 @@ const PieChart = (props) => {
     }
 
     return <Pie data={chartData} options={option} />
-}
-
-PieChart.propTypes = {
-    value: PropTypes.string,
 }
 
 export default PieChart

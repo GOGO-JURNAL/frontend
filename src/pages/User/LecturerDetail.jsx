@@ -34,7 +34,6 @@ const LecturerDetailPage = () => {
                                 <Articles
                                     key={index}
                                     title={data.title}
-                                    author={data.dosen_id}
                                     publication={data.publication}
                                     year={data.year}
                                     cite={data.cite}

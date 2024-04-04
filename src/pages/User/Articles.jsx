@@ -9,7 +9,7 @@ const ArticlesPage = () => {
 
     useEffect(() => {
         getJournal().then((data) => setArticles(data))
-    })
+    }, [])
 
     if (!articles.Jurnal) {
         return <div>Loading...</div>
@@ -35,7 +35,6 @@ const ArticlesPage = () => {
                                     <Articles
                                         key={index}
                                         title={data.title}
-                                        author={data.dosen_id}
                                         publication={data.publication}
                                         year={data.year}
                                         cite={data.cite}

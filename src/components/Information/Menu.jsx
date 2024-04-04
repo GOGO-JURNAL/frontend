@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types'
-
 const InformationMenu = (props) => {
     let { icon, text, value } = props
 
@@ -16,12 +14,6 @@ const InformationMenu = (props) => {
             </div>
         </aside>
     )
-}
-
-InformationMenu.propTypes = {
-    icon: PropTypes.object,
-    text: PropTypes.string,
-    value: PropTypes.number,
 }
 
 export default InformationMenu

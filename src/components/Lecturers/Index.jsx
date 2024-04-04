@@ -11,7 +11,7 @@ const Lecturers = () => {
             .catch((err) => {
                 console.log(err)
             })
-    })
+    }, [])
 
     if (!Lecturers) {
         return <div>Loading...</div>

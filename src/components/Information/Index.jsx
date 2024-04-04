@@ -9,11 +9,11 @@ const Information = () => {
 
     useEffect(() => {
         getLecturers().then((data) => setLecturers(data.length))
-    })
+    }, [])
 
     useEffect(() => {
         getJournal().then((data) => setArticles(data))
-    })
+    }, [])
 
     const total =
         Number(articles.SCOPUS) +

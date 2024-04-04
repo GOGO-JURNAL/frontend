@@ -1,5 +1,4 @@
 import univLogo from '/assets/logo-univ.png'
-import PropTypes from 'prop-types'
 
 const Header = (props) => {
     const {
@@ -23,11 +22,6 @@ const Header = (props) => {
             </div>
         </header>
     )
-}
-
-Header.propTypes = {
-    name: PropTypes.string,
-    description: PropTypes.string,
 }
 
 export default Header
