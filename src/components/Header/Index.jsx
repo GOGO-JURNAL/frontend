@@ -1,4 +1,4 @@
-import univLogo from '/assets/logo-univ.png'
+import univLogo from '../../assets/logo-univ.png'
 
 const Header = (props) => {
     const {
