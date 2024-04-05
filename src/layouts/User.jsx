@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router'
 import Navbar from '../components/Navbar/Index'
+import Footer from '../components/Footer/Index'
 
 const User = () => {
     return (
@@ -8,9 +9,11 @@ const User = () => {
             style={{ maxWidth: '1480px' }}>
             <Navbar />
 
-            <main className="container bg-white rounded-5 overflow-hidden mt-3 p-0 pb-5 shadow mb-5">
+            <main className="container bg-white rounded-5 overflow-hidden mt-3 p-0 pb-5 shadow mb-5 min-vh-100">
                 <Outlet />
             </main>
+
+            <Footer />
         </div>
     )
 }
