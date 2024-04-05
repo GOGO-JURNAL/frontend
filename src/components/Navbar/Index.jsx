@@ -36,7 +36,7 @@ const Navbar = () => {
                             <Link
                                 to={'/'}
                                 className={`nav-link ${linkStyle('/')}`}>
-                                Homes
+                                Home
                             </Link>
                         </li>
                         <li className="nav-item">
