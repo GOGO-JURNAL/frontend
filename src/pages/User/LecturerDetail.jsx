@@ -27,7 +27,7 @@ const LecturerDetailPage = () => {
             <main className="w-100 px-5 mt-5">
                 <h1 className="fw-bold fs-3 mb-0">Articles</h1>
                 <div>
-                    {lecturer.Jurnal ? (
+                    {lecturer.Jurnal && lecturer.Jurnal.length > 0 ? (
                         lecturer.Jurnal.sort((a, b) => b.cite - a.cite)
                             .sort((a, b) => new Date(b.year) - new Date(a.year))
                             .map((data, index) => (
@@ -40,7 +40,11 @@ const LecturerDetailPage = () => {
                                 />
                             ))
                     ) : (
-                        <div>Tidak ada jurnal</div>
+                        <div className="text-center mt-5">
+                            <p className="text-muted fs-5">
+                                This lecturer has no article
+                            </p>
+                        </div>
                     )}
                 </div>
             </main>

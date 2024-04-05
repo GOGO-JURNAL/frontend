@@ -23,15 +23,19 @@ const Lecturers = () => {
             <h3 className="fw-bold">All Lecturers</h3>
 
             <div className="mt-3 d-flex flex-column gap-3">
-                {Lecturers.map((lecturer) => (
-                    <Menu
-                        key={lecturer.id}
-                        name={lecturer.name}
-                        idSinta={lecturer.sinta_id}
-                        id={lecturer.id}
-                        articles={lecturer.Jurnal.length}
-                    />
-                ))}
+                {Lecturers ? (
+                    Lecturers.map((lecturer) => (
+                        <Menu
+                            key={lecturer.id}
+                            name={lecturer.name}
+                            idSinta={lecturer.sinta_id}
+                            id={lecturer.id}
+                            articles={lecturer.Jurnal.length}
+                        />
+                    ))
+                ) : (
+                    <Loading />
+                )}
             </div>
         </div>
     )
