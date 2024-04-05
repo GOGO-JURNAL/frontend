@@ -36,6 +36,7 @@ const ArticlesPage = () => {
                                     <Articles
                                         key={index}
                                         title={data.title}
+                                        author_id={data.dosen_id}
                                         publication={data.publication}
                                         year={data.year}
                                         cite={data.cite}
