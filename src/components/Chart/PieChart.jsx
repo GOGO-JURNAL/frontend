@@ -45,11 +45,10 @@ const PieChart = (props) => {
     const { value, lecturers } = props
     const [chartData, setChartData] = useState(null)
 
+    if (!lecturers) return <div>Loading...</div>
+
+    const data = processingData(lecturers, value)
     useEffect(() => {
-        if (!lecturers) return <div>Loading...</div>
-
-        const data = processingData(lecturers, value)
-
         const newChartData = {
             labels: data.map((data) => data.year),
             datasets: [
