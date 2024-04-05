@@ -15,6 +15,7 @@ const Navbar = () => {
                         src={logo}
                         alt=""
                         style={{ height: '50px', width: '100%' }}
+                        loading="lazy"
                     />
                 </Link>
                 <button

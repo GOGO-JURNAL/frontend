@@ -7,12 +7,15 @@ const Header = (props) => {
     } = props
 
     return (
-        <header className="hero d-flex flex-column justify-content-center align-items-center">
+        <header
+            className="hero d-flex flex-column justify-content-center align-items-center"
+            loading="lazy">
             <img
                 src={univLogo}
                 alt=""
                 className="img-fluid"
                 style={{ width: '13%' }}
+                loading="lazy"
             />
             <div className="text-center mt-3">
                 <h1 className="text-white fw-bold mb-0">{name}</h1>

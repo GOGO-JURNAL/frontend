@@ -47,7 +47,9 @@ const HomePage = () => {
                 </div>
 
                 <div className="text-end mt-3">
-                    <Link to={'/articles'} className="text-decoration-none">
+                    <Link
+                        to={'/articles'}
+                        className="text-decoration-none text-blue">
                         Show more...
                     </Link>
                 </div>

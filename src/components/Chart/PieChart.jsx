@@ -1,10 +1,13 @@
 import { Chart } from 'chart.js/auto'
 import { ArcElement, Tooltip } from 'chart.js'
 import { Pie } from 'react-chartjs-2'
+import { useEffect, useState } from 'react'
 
 Chart.register(ArcElement, Tooltip)
 
 function processingData(lecturers, value) {
+    if (!lecturers || !lecturers.length) return []
+
     let data = [
         {
             published: true,
@@ -40,25 +43,28 @@ function processingData(lecturers, value) {
 }
 const PieChart = (props) => {
     const { value, lecturers } = props
+    const [chartData, setChartData] = useState(null)
 
-    if (!lecturers) {
-        return <div>Loading...</div>
-    }
+    useEffect(() => {
+        if (!lecturers) return <div>Loading...</div>
 
-    const data = processingData(lecturers, value)
+        const data = processingData(lecturers, value)
 
-    const chartData = {
-        labels: data.map((data) => data.year),
-        datasets: [
-            {
-                label: '',
-                data: data.map((data) => data.percentage()),
-                backgroundColor: data.map((data) =>
-                    data.published === true ? '#2194BA' : '#EEF5FF',
-                ),
-            },
-        ],
-    }
+        const newChartData = {
+            labels: data.map((data) => data.year),
+            datasets: [
+                {
+                    label: '',
+                    data: data.map((data) => data.percentage()),
+                    backgroundColor: data.map((data) =>
+                        data.published === true ? '#2194BA' : '#EEF5FF',
+                    ),
+                },
+            ],
+        }
+
+        setChartData(newChartData)
+    }, [value, lecturers])
     const option = {
         responsive: true,
         plugins: {
@@ -88,7 +94,15 @@ const PieChart = (props) => {
         },
     }
 
-    return <Pie data={chartData} options={option} />
+    return (
+        <div>
+            {lecturers && chartData ? (
+                <Pie data={chartData} options={option} key={value} />
+            ) : (
+                <div>Loading...</div>
+            )}
+        </div>
+    )
 }
 
 export default PieChart
