@@ -29,5 +29,6 @@ jobs:
             git pull origin main
             git status
             npm i
+            npm run build
             rm -r build 
             sudo cp -rf build/* /var/www/html
