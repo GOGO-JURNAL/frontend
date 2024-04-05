@@ -26,7 +26,7 @@ const Charts = () => {
         Number(articles.PENGABDIAN)
 
     return (
-        <div className="w-100 px-5 d-flex gap-5">
+        <div className="w-100 px-5 pb-5 d-flex gap-5 border-bottom border-5">
             <div className="container">
                 <div className="row justify-content-center align-items-center gap-5 gap-md-0">
                     <div className="col-md-6">
